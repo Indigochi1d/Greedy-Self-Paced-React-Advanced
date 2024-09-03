@@ -1,8 +1,12 @@
 import Modal from "./Modal";
+import {useContext} from "react";
+import Contexts from "../../contexts/Contexts.jsx";
 
-const RestaurantDetailModal = ({ isModal, setIsModal }) => {
+const RestaurantDetailModal = () => {
+    const {state,actions} = useContext(Contexts);
+
     const onCloseModal = () => {
-        setIsModal({
+        actions.setIsModal({
             isOpen: false,
             restaurant: {
                 name: "",
@@ -12,9 +16,9 @@ const RestaurantDetailModal = ({ isModal, setIsModal }) => {
     };
 
     return (
-        <Modal title={isModal.restaurant.name} onClose={onCloseModal}>
+        <Modal title={state.isModal.restaurant.name} onClose={onCloseModal}>
             <div>
-                <p>{isModal.restaurant.description}</p>
+                <p>{state.isModal.restaurant.description}</p>
             </div>
         </Modal>
     );

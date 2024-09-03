@@ -5,6 +5,8 @@ import CategoryJapanese from "../../../templates/category-japanese.png";
 import CategoryWestern from "../../../templates/category-western.png";
 import CategoryAsian from "../../../templates/category-asian.png";
 import CategoryETC from "../../../templates/category-etc.png";
+import {useContext} from "react";
+import Contexts from "../../contexts/Contexts.jsx";
 
 const Restaurant = styled.li`
     display: flex;
@@ -50,7 +52,8 @@ const RestaurantDescription = styled.p`
     -webkit-box-orient: vertical;
 `;
 
-const RestaurantInfo = ({ restaurant, key, setIsModal }) => {
+const RestaurantInfo = ({ restaurant, key}) => {
+    const {actions} = useContext(Contexts);
     const getCategoryIcon = (category) => {
         switch (category) {
             case "한식":
@@ -73,7 +76,7 @@ const RestaurantInfo = ({ restaurant, key, setIsModal }) => {
     return (
         <Restaurant
             key={key}
-            onClick={() => setIsModal({
+            onClick={() => actions.setIsModal({
                 isOpen: true,
                 restaurant: {
                     name: restaurant.name,

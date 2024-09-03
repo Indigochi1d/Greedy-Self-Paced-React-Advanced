@@ -1,11 +1,14 @@
 import AddModal from "./AddRestaurantModal.jsx";
 import InformationModal from "./RestaurantDetailModal.jsx";
+import Contexts from "../../contexts/Contexts.jsx";
+import {useContext} from "react";
 
-const Aside = ({isModal,setIsModal,isAddModal,setIsAddModal}) => {
+const Aside = () => {
+    const {state} = useContext(Contexts);
     return (
         <aside>
-            {isAddModal && <AddModal setIsAddModal={setIsAddModal}  />}
-            {isModal.isOpen && <InformationModal isModal={isModal} setIsModal={setIsModal} />}
+            {state.isAddModal && <AddModal/>}
+            {state.isModal.isOpen && <InformationModal/>}
         </aside>
     );
 };

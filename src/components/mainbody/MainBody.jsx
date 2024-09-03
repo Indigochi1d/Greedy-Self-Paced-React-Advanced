@@ -1,21 +1,22 @@
 import CategoryFilter from "./CategoryFilter.jsx";
 import RestaurantList from "./RestaurantList.jsx";
-import {useState} from "react";
+import {useContext} from "react";
+import Contexts from "../../contexts/Contexts.jsx";
 
-const MainBody = ({setIsModal,restaurants}) => {
+const MainBody = () => {
+    const {state} = useContext(Contexts);
 
-    const [category,setCategory] = useState("전체");
     let filteredRestaurants;
-    if(category === "전체"){
-        filteredRestaurants = restaurants;
+    if(state.category === "전체"){
+        filteredRestaurants = state.restaurants;
     }
-    if(category !== "전체"){
-        filteredRestaurants = restaurants.filter(restaurant => restaurant.category === category);
+    if(state.category !== "전체"){
+        filteredRestaurants = state.restaurants.filter(restaurant => restaurant.category === state.category);
     }
     return (
         <>
-            <CategoryFilter setCategory={setCategory} />
-            <RestaurantList filteredRestaurants={filteredRestaurants} setIsModal={setIsModal} />
+            <CategoryFilter/>
+            <RestaurantList filteredRestaurants={filteredRestaurants} />
         </>
 
 

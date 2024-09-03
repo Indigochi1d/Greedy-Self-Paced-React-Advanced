@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import addButton from "../../../templates/add-button.png";
+import {useContext} from "react";
+import Contexts from "../../contexts/Contexts.jsx";
 
 const Gnb = styled.header`
     display: flex;
@@ -33,14 +35,15 @@ const GnbButton = styled.button`
     }
 `;
 
-const Header = ({ setIsAddModal }) => {
+const Header = () => {
+    const {actions} = useContext(Contexts);
     return (
         <Gnb>
             <GnbTitle>점심 뭐 먹지</GnbTitle>
             <GnbButton
                 type="button"
                 aria-label="음식점 추가"
-                onClick={() => setIsAddModal(true)}
+                onClick={() => actions.setIsAddModal(true)}
             >
                 <img src={addButton} alt="음식점 추가" />
             </GnbButton>

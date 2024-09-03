@@ -1,8 +1,8 @@
 import Header from "../components/header/Header..jsx";
 
-const HeaderContainer = ({setIsAddModal}) => {
+const HeaderContainer = () => {
     return (
-        <Header setIsAddModal={setIsAddModal}/>
+        <Header/>
     );
 };
 

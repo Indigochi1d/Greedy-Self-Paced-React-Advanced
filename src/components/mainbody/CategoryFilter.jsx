@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import {useContext} from "react";
+import Contexts from "../../contexts/Contexts.jsx";
 
 const FilterContainer = styled.section`
     display: flex;
@@ -19,14 +21,19 @@ const FilterSelect = styled.select`
     font-weight: 400;
 `;
 
-const CategoryFilter = ({ selectedCategory, onChange }) => {
+const CategoryFilter = () => {
     const options = ["전체", "한식", "중식", "일식", "양식", "아시안", "기타"];
+    const {state, actions} = useContext(Contexts);
+
+    const handleChange = (e) => {
+        actions.setCategory(e.target.value);
+    };
 
     return (
         <FilterContainer>
             <FilterSelect
-                value={selectedCategory}
-                onChange={(e) => onChange(e.target.value)}
+                value={state.category}
+                onChange={handleChange}
             >
                 {options.map((option) => (
                     <option key={option} value={option}>

@@ -8,12 +8,12 @@ const RestaurantListContainer = styled.section`
     margin: 16px 0;
 `;
 
-const RestaurantList = ({ filteredRestaurants, setIsModal }) => {
+const RestaurantList = ({ filteredRestaurants }) => {
     return (
         <RestaurantListContainer>
             <ul>
                 {filteredRestaurants.map((restaurant) => (
-                    <RestaurantInfo key={restaurant.id} restaurant={restaurant} setIsModal={setIsModal} />
+                    <RestaurantInfo key={restaurant.id} restaurant={restaurant}/>
                 ))}
             </ul>
         </RestaurantListContainer>
