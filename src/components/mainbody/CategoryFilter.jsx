@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {useContext} from "react";
-import Contexts from "../../contexts/Contexts.jsx";
+import {useRecoilState} from "recoil";
+import {CategoryAtom} from "../../store/index.js";
 
 const FilterContainer = styled.section`
     display: flex;
@@ -23,16 +23,16 @@ const FilterSelect = styled.select`
 
 const CategoryFilter = () => {
     const options = ["전체", "한식", "중식", "일식", "양식", "아시안", "기타"];
-    const {state, actions} = useContext(Contexts);
+    const [category, setCategory] = useRecoilState(CategoryAtom);
 
     const handleChange = (e) => {
-        actions.setCategory(e.target.value);
+        setCategory(e.target.value);
     };
 
     return (
         <FilterContainer>
             <FilterSelect
-                value={state.category}
+                value={category}
                 onChange={handleChange}
             >
                 {options.map((option) => (

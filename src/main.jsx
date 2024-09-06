@@ -1,10 +1,9 @@
 import {createRoot} from 'react-dom/client'
 import App from './App.jsx'
-import {Providers} from "./contexts/Contexts.jsx"
+import {RecoilRoot} from "recoil";
 
 createRoot(document.getElementById('root')).render(
-    <Providers>
+    <RecoilRoot>
         <App/>
-    </Providers>
-    ,
+    </RecoilRoot>
 )

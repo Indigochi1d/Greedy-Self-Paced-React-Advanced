@@ -5,8 +5,9 @@ import CategoryJapanese from "../../../templates/category-japanese.png";
 import CategoryWestern from "../../../templates/category-western.png";
 import CategoryAsian from "../../../templates/category-asian.png";
 import CategoryETC from "../../../templates/category-etc.png";
-import {useContext} from "react";
-import Contexts from "../../contexts/Contexts.jsx";
+import {useSetRecoilState} from "recoil";
+import {IsModalAtom} from "../../store/index.js";
+
 
 const Restaurant = styled.li`
     display: flex;
@@ -53,7 +54,7 @@ const RestaurantDescription = styled.p`
 `;
 
 const RestaurantInfo = ({ restaurant, key}) => {
-    const {actions} = useContext(Contexts);
+    const setIsModal = useSetRecoilState(IsModalAtom);
     const getCategoryIcon = (category) => {
         switch (category) {
             case "한식":
@@ -76,7 +77,7 @@ const RestaurantInfo = ({ restaurant, key}) => {
     return (
         <Restaurant
             key={key}
-            onClick={() => actions.setIsModal({
+            onClick={() => setIsModal({
                 isOpen: true,
                 restaurant: {
                     name: restaurant.name,

@@ -6,8 +6,8 @@ import CategoryJapanese from "../../../templates/category-japanese.png";
 import CategoryWestern from "../../../templates/category-western.png";
 import CategoryAsian from "../../../templates/category-asian.png";
 import CategoryETC from "../../../templates/category-etc.png";
-import {useContext} from "react";
-import Contexts from "../../contexts/Contexts.jsx";
+import {useSetRecoilState} from "recoil";
+import {IsAddModalAtom} from "../../store/index.js";
 
 const FormItem = styled.div`
     display: flex;
@@ -82,9 +82,10 @@ const Button = styled.button`
 const options = ["전체", "한식", "중식", "일식", "양식", "아시안", "기타"];
 
 const AddRestaurantModal = () => {
-    const {actions} = useContext(Contexts);
+    const setIsAddModal = useSetRecoilState(IsAddModalAtom);
+
     const onCloseAddModal = () => {
-        actions.setIsAddModal(false);
+        setIsAddModal(false);
     };
 
     const onAddRestaurant = (e) => {

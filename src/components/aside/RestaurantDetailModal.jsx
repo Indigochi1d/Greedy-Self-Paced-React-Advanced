@@ -1,12 +1,13 @@
 import Modal from "./Modal";
-import {useContext} from "react";
-import Contexts from "../../contexts/Contexts.jsx";
+import {useRecoilState} from "recoil";
+import {IsModalAtom} from "../../store/index.js";
 
 const RestaurantDetailModal = () => {
-    const {state,actions} = useContext(Contexts);
+    const [isModal,setIsModal] = useRecoilState(IsModalAtom);
+
 
     const onCloseModal = () => {
-        actions.setIsModal({
+        setIsModal({
             isOpen: false,
             restaurant: {
                 name: "",
@@ -16,9 +17,9 @@ const RestaurantDetailModal = () => {
     };
 
     return (
-        <Modal title={state.isModal.restaurant.name} onClose={onCloseModal}>
+        <Modal title={isModal.restaurant.name} onClose={onCloseModal}>
             <div>
-                <p>{state.isModal.restaurant.description}</p>
+                <p>{isModal.restaurant.description}</p>
             </div>
         </Modal>
     );

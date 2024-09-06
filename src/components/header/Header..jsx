@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import addButton from "../../../templates/add-button.png";
-import {useContext} from "react";
-import Contexts from "../../contexts/Contexts.jsx";
+import {IsAddModalAtom} from "../../store/index.js";
+import {useSetRecoilState} from "recoil";
 
 const Gnb = styled.header`
     display: flex;
@@ -36,14 +36,14 @@ const GnbButton = styled.button`
 `;
 
 const Header = () => {
-    const {actions} = useContext(Contexts);
+    const setIsAddModal = useSetRecoilState(IsAddModalAtom);
     return (
         <Gnb>
             <GnbTitle>점심 뭐 먹지</GnbTitle>
             <GnbButton
                 type="button"
                 aria-label="음식점 추가"
-                onClick={() => actions.setIsAddModal(true)}
+                onClick={() => setIsAddModal(true)}
             >
                 <img src={addButton} alt="음식점 추가" />
             </GnbButton>

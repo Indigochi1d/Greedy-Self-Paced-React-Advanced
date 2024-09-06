@@ -1,17 +1,18 @@
 import CategoryFilter from "./CategoryFilter.jsx";
 import RestaurantList from "./RestaurantList.jsx";
-import {useContext} from "react";
-import Contexts from "../../contexts/Contexts.jsx";
+import {RestaurantsAtom,CategoryAtom} from "../../store/index.js";
+import {useRecoilValue} from "recoil";
 
 const MainBody = () => {
-    const {state} = useContext(Contexts);
+    const category = useRecoilValue(CategoryAtom);
+    const restaurants = useRecoilValue(RestaurantsAtom);
 
     let filteredRestaurants;
-    if(state.category === "전체"){
-        filteredRestaurants = state.restaurants;
+    if(category === "전체"){
+        filteredRestaurants = restaurants;
     }
-    if(state.category !== "전체"){
-        filteredRestaurants = state.restaurants.filter(restaurant => restaurant.category === state.category);
+    if(category !== "전체"){
+        filteredRestaurants = restaurants.filter(restaurant => restaurant.category === category);
     }
     return (
         <>
