@@ -1,26 +1,20 @@
+import { useSelector } from 'react-redux';
 import CategoryFilter from "./CategoryFilter.jsx";
 import RestaurantList from "./RestaurantList.jsx";
-import {RestaurantsAtom,CategoryAtom} from "../../store/index.js";
-import {useRecoilValue} from "recoil";
 
 const MainBody = () => {
-    const category = useRecoilValue(CategoryAtom);
-    const restaurants = useRecoilValue(RestaurantsAtom);
+    const category = useSelector((state) => state.category);
+    const restaurants = useSelector((state) => state.restaurants);
 
-    let filteredRestaurants;
-    if(category === "전체"){
-        filteredRestaurants = restaurants;
-    }
-    if(category !== "전체"){
-        filteredRestaurants = restaurants.filter(restaurant => restaurant.category === category);
-    }
+    const filteredRestaurants = category === "전체"
+        ? restaurants
+        : restaurants.filter(restaurant => restaurant.category === category);
+
     return (
         <>
-            <CategoryFilter/>
+            <CategoryFilter />
             <RestaurantList filteredRestaurants={filteredRestaurants} />
         </>
-
-
     );
 };
 

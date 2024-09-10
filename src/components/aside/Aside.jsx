@@ -1,11 +1,10 @@
 import AddModal from "./AddRestaurantModal.jsx";
 import InformationModal from "./RestaurantDetailModal.jsx";
-import {IsAddModalAtom,IsModalAtom} from "../../store/index.js";
-import {useRecoilValue} from "recoil";
+import {useSelector} from "react-redux";
 
 const Aside = () => {
-    const isAddModal = useRecoilValue(IsAddModalAtom);
-    const isModal = useRecoilValue(IsModalAtom);
+    const isAddModal = useSelector((state)=>state.isAddModalSlice);
+    const isModal = useSelector((state)=>state.isModalSlice);
     return (
         <aside>
             {isAddModal && <AddModal/>}

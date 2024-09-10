@@ -1,21 +1,13 @@
 import Modal from "./Modal";
-import {useRecoilState} from "recoil";
-import {IsModalAtom} from "../../store/index.js";
+import {useDispatch, useSelector} from "react-redux";
+import {closeModal} from "../../modules/slices/isModalSlice.js";
 
 const RestaurantDetailModal = () => {
-    const [isModal,setIsModal] = useRecoilState(IsModalAtom);
-
-
+    const dispatch = useDispatch();
+    const isModal = useSelector((state) => state.isModalSlice);
     const onCloseModal = () => {
-        setIsModal({
-            isOpen: false,
-            restaurant: {
-                name: "",
-                description: "",
-            },
-        });
+        dispatch(closeModal());
     };
-
     return (
         <Modal title={isModal.restaurant.name} onClose={onCloseModal}>
             <div>

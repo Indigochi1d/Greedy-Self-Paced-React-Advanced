@@ -5,9 +5,8 @@ import CategoryJapanese from "../../../templates/category-japanese.png";
 import CategoryWestern from "../../../templates/category-western.png";
 import CategoryAsian from "../../../templates/category-asian.png";
 import CategoryETC from "../../../templates/category-etc.png";
-import {useSetRecoilState} from "recoil";
-import {IsModalAtom} from "../../store/index.js";
-
+import {openModal} from "../../modules/slices/isModalSlice.js";
+import {useDispatch} from "react-redux";
 
 const Restaurant = styled.li`
     display: flex;
@@ -54,7 +53,7 @@ const RestaurantDescription = styled.p`
 `;
 
 const RestaurantInfo = ({ restaurant, key}) => {
-    const setIsModal = useSetRecoilState(IsModalAtom);
+    const dispatch = useDispatch();
     const getCategoryIcon = (category) => {
         switch (category) {
             case "한식":
@@ -77,13 +76,10 @@ const RestaurantInfo = ({ restaurant, key}) => {
     return (
         <Restaurant
             key={key}
-            onClick={() => setIsModal({
-                isOpen: true,
-                restaurant: {
-                    name: restaurant.name,
-                    description: restaurant.description,
-                }
-            })}
+            onClick={() => dispatch(openModal({
+                name: restaurant.name,
+                description: restaurant.description,
+            }))}
         >
             <RestaurantCategory>
                 <CategoryIcon

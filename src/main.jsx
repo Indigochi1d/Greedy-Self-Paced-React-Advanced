@@ -1,9 +1,14 @@
 import {createRoot} from 'react-dom/client'
 import App from './App.jsx'
-import {RecoilRoot} from "recoil";
+import {Provider} from "react-redux";
+import rootReducer from "./modules";
+import {configureStore} from "@reduxjs/toolkit";
 
+const store = configureStore({
+    reducer: rootReducer,
+});
 createRoot(document.getElementById('root')).render(
-    <RecoilRoot>
+    <Provider store={store}>
         <App/>
-    </RecoilRoot>
+    </Provider>
 )

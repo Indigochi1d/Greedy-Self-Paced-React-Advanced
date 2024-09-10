@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {useRecoilState} from "recoil";
-import {CategoryAtom} from "../../store/index.js";
+import {useDispatch, useSelector} from "react-redux";
+import {setCategory} from "../../modules/slices/categorySlice.js";
 
 const FilterContainer = styled.section`
     display: flex;
@@ -22,11 +22,13 @@ const FilterSelect = styled.select`
 `;
 
 const CategoryFilter = () => {
+    const dispatch = useDispatch();
+    const category = useSelector((state) => state.category);
     const options = ["전체", "한식", "중식", "일식", "양식", "아시안", "기타"];
-    const [category, setCategory] = useRecoilState(CategoryAtom);
+
 
     const handleChange = (e) => {
-        setCategory(e.target.value);
+       dispatch(setCategory(e.target.value));
     };
 
     return (

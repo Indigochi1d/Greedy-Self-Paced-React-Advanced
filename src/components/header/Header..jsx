@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import addButton from "../../../templates/add-button.png";
-import {IsAddModalAtom} from "../../store/index.js";
-import {useSetRecoilState} from "recoil";
+import {toggleModal} from "../../modules/slices/isAddModalSlice.js";
+import {useDispatch} from "react-redux";
 
 const Gnb = styled.header`
     display: flex;
@@ -36,14 +36,14 @@ const GnbButton = styled.button`
 `;
 
 const Header = () => {
-    const setIsAddModal = useSetRecoilState(IsAddModalAtom);
+    const dispatch = useDispatch();
     return (
         <Gnb>
             <GnbTitle>점심 뭐 먹지</GnbTitle>
             <GnbButton
                 type="button"
                 aria-label="음식점 추가"
-                onClick={() => setIsAddModal(true)}
+                onClick={() => dispatch(toggleModal(true))}
             >
                 <img src={addButton} alt="음식점 추가" />
             </GnbButton>
